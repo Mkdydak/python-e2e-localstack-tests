@@ -1,0 +1,23 @@
+name: Run Docker Tests
+
+on:
+  push:
+    branches:
+      - main  # zmień na 'master' jeśli używasz gałęzi master
+  pull_request:
+    branches:
+      - main  # zmień na 'master' jeśli używasz gałęzi master
+
+jobs:
+  build_and_run_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t my-python-app .
+
+    - name: Run Docker container
+      run: docker run my-python-app
